@@ -5,6 +5,7 @@ env:
     SNYK_ORG: SnykPSOrg
 phases:
   install:
+      #note
       # Installing Snyk https://snyk.io/
     - echo 'Installing Snyk'
     - npm install -g snyk
