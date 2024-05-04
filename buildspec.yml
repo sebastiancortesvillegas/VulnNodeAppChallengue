@@ -8,7 +8,7 @@ phases:
    install:
       - npm install -g snyk
     runtime-versions:
-      nodejs: 10
+      nodejs: 18
   pre_build:
     commands:
       - echo Installing source NPM dependencies...
@@ -18,7 +18,7 @@ phases:
       - echo Build started on `date`
       - echo Compiling the Node.js code
       - snyk test
-      - snyk monitor --org=dfc53452-bd8c-4e29-90e0-a30d8055af24
+      - snyk monitor --org="snykmonitor"
   post_build:
     commands:
       - echo Build completed on `date`
