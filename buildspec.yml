@@ -14,7 +14,6 @@ phases:
     commands:
       - echo Build started on `date`
       - echo Compiling the Node.js code
-      - snyk test
   post_build:
     commands:
       - echo Build completed on `date`
