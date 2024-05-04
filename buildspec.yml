@@ -12,7 +12,6 @@ phases:
       - npm install -g snyk
   pre_build:
     commands:
-      - export SNYK_TOKEN= ${SNYK_TOKEN}
       - echo Installing source NPM dependencies...
       - npm install
   build:
