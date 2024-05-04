@@ -1,10 +1,10 @@
 version: 0.2
 phases:
    install:
-     commands:
-      - npm install -g snyk
     runtime-versions:
       nodejs: 18
+    commands:
+      - npm install -g snyk
   pre_build:
     commands:
       - echo Installing source NPM dependencies...
