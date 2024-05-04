@@ -1,15 +1,13 @@
 version: 0.2
 env:
-  parameter-store:
-    # Requires that you have a secure string in AWS Systems Manager Parameter Store
-    # called "snykAuthToken" with your Snyk token.
-    SNYK_TOKEN: "snykAuthToken"
+  variables:
+    SNYK_TOKEN: "77b53117-a649-4d1c-a102-8e9fd3880fae"
 phases:
   install:
     runtime-versions:
       nodejs: 18
     commands:
-      - echo $snykAuthToken
+      - echo $SNYK_TOKEN
       - npm install -g snyk
   pre_build:
     commands:
