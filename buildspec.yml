@@ -18,7 +18,7 @@ phases:
     commands:
       - echo Build started on `date`
       - echo Compiling the Node.js code
-      - snyk test
+      - snyk test --prune-repeated-subdependencies
   post_build:
     commands:
       - echo Build completed on `date`
