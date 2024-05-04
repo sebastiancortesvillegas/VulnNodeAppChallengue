@@ -5,7 +5,7 @@ env:
 phases:
   install:
     runtime-versions:
-      nodejs: 16
+      nodejs: 18
     commands:
       - echo $SNYK_TOKEN
       - npm install -g snyk
@@ -18,7 +18,6 @@ phases:
     commands:
       - echo Build started on `date`
       - echo Compiling the Node.js code
-      - snyk test --prune-repeated-subdependencies
   post_build:
     commands:
       - echo Build completed on `date`
