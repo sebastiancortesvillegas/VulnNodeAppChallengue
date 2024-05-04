@@ -4,11 +4,10 @@ phases:
     runtime-versions:
       nodejs: 18
     commands:
-      - npm install -g snyk
-  pre_build:
-    commands:
       - echo Installing source NPM dependencies...
       - npm install
+  pre_build:
+    commands:
   build:
     commands:
       - echo Build started on `date`
