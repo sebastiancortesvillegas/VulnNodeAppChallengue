@@ -1,50 +1,20 @@
 version: 0.2
-env:
-  parameter-store:
-    SNYK_TOKEN: SnykAuth
-    SNYK_ORG: SnykPSOrg
+
 phases:
   install:
-      #note
-      # Installing Snyk https://snyk.io/
-    - echo 'Installing Snyk'
-    - npm install -g snyk
     runtime-versions:
       nodejs: 10
   pre_build:
     commands:
       - echo Installing source NPM dependencies...
       - npm install
-     # Authorizing to Snyk using the predefined token
-    - echo Authorizing Snyk
-    - snyk config set api=${SNYK_TOKEN}
-    # Downloading the requirements file, with the missing packages
-    - aws s3 cp s3://cdk-stack-cdkciconstructartifactsbucket9d74b28d-61ufvwdffpxw/requirements_files/${REQ_FILENAME}     
   build:
     commands:
       - echo Build started on `date`
       - echo Compiling the Node.js code
-      # Installing the missing packages
-      - echo Installing requiremnets
-      - pip3 install -r ${REQ_FILENAME}
-    # Scanning the packages using Snyk
-      - echo Executing Snyk scan
-      - snyk test --file=${REQ_FILENAME} --org=${SNYK_ORG} --package-manager=pip > results_output
-      
   post_build:
     commands:
       - echo Build completed on `date`
-      # Alert and generate a report if any vulnerabilities are found
-      - if [[ $CODEBUILD_BUILD_SUCCEEDING == 0 ]]; then
-      echo '@@@@@@@@ Snyk found vulnerabilities, Aborting @@@@@@@';
-      exit 255;
-      fi
-      - pip3 install twine
-      - mkdir downloaded_pakacges
-      - pip3 download -r ${REQ_FILENAME} -d downloaded_pakacges
-      - aws codeartifact login --tool twine --domain dummy-domain --domain-owner 448328614092 --repository dummy-repo
-    # Uploading the missing, scanned packages to Code Artifact
-      - twine upload --repository codeartifact downloaded_pakacges/*
 
 artifacts:
   files:
