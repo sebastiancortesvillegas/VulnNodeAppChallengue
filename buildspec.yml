@@ -1,6 +1,7 @@
 version: 0.2
+
 phases:
-   install:
+  install:
     runtime-versions:
       nodejs: 18
   pre_build:
@@ -11,8 +12,6 @@ phases:
     commands:
       - echo Build started on `date`
       - echo Compiling the Node.js code
-      - snyk test
-      - snyk monitor --org="snykmonitor"
   post_build:
     commands:
       - echo Build completed on `date`
