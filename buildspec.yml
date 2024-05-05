@@ -19,6 +19,7 @@ phases:
     commands:
       - echo Build started on `date`
       - echo Compiling the Node.js code
+      - snyk test ||true --json > result-opensource.json
       - snyk monitor --all-projects --org=dfc53452-bd8c-4e29-90e0-a30d8055af24
       - snyk-to-html -o results.html -s
   post_build:
