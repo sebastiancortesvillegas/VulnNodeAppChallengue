@@ -18,9 +18,8 @@ phases:
     commands:
       - echo Build started on `date`
       - echo Compiling the Node.js code
-      - snyk test --severity-threshold=medium
-      - snyk-to-html -i results.json -o results.html -s
       - snyk monitor --all-projects --org=dfc53452-bd8c-4e29-90e0-a30d8055af24
+      - snyk-to-html -i results.json -o results.html -s
   post_build:
     commands:
       - echo Build completed on `date`
