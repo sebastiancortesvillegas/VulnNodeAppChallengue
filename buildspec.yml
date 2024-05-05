@@ -4,12 +4,19 @@ phases:
     runtime-versions:
       nodejs: 18
     commands:
-      - echo $SNYK_TOKEN
       - npm install -g snyk
       - npm install snyk-to-html -g
+      - apt-get update
+      - apt-get install -y jq
+      - wget https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-5.0.1.3006-linux.zip
+      - unzip ./sonar-scanner-cli-5.0.1.3006-linux.zip
+      - export PATH=$PATH:./sonar-scanner-5.0.1.3006-linux/bin/
   pre_build:
     commands:
-      - env
+      - echo $SONARCLOUD_TOKEN
+      - sleep 5
+      - curl https://sonarcloud.io/api/qualitygates/project_status?projectKey=$PROJECTKEY > analysis.json
+      - cat analysis.json
       - echo Installing source NPM dependencies...
       - npm install
   build:
