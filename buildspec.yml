@@ -9,6 +9,7 @@ phases:
     commands:
       - echo $SNYK_TOKEN
       - npm install -g snyk
+      - npm install snyk-to-html -g
   pre_build:
     commands:
       - env
