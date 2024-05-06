@@ -1,7 +1,7 @@
 FROM amazonlinux:latest
 
 # Instalar curl y Node.js
-RUN yum install -y curl && \
+RUN yum install -y curl --allowerasing && \
     curl -fsSL https://rpm.nodesource.com/setup_18.x | bash - && \
     yum install -y nodejs
 
