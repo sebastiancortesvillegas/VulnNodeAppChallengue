@@ -12,6 +12,7 @@ phases:
   pre_build:
     commands:
       - echo $SONARCLOUD_TOKEN
+      - echo $PROJECTKEY
       - sonar-scanner -Dsonar.organization=$SONARCLOUD_ORG -Dsonar.projectKey=$PROJECTKEY -Dsonar.sources=. -Dsonar.host.url=https://sonarcloud.io
       - sleep 5
       - curl https://sonarcloud.io/api/qualitygates/project_status?projectKey=$PROJECTKEY > analysis.json
