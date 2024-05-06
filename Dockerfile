@@ -5,7 +5,7 @@ FROM amazonlinux:latest
 RUN yum update -y && \
     yum install -y curl && \
     curl -fsSL https://rpm.nodesource.com/setup_18.x | bash - && \
-    yum install -y nodejs
+    yum install -y --allowerasing nodejs
 
 # Establecer el directorio de trabajo
 ENV WORKDIR /opt/vuln-node-app
