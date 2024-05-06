@@ -1,10 +1,8 @@
 FROM amazonlinux:latest
 
 # Instalar curl y Node.js
-RUN yum install -y curl --allowerasing && \
-    curl -fsSL https://rpm.nodesource.com/setup_18.x | bash - && \
-    yum install -y nodejs
-
+RUN yum update -y && yum install -y curl && curl -fsSL https://deb.nodesource.com/setup_18.x | bash - && yum install -y nodejs
+    
 # Establecer el directorio de trabajo
 ENV WORKDIR /opt/vuln-node-app
 WORKDIR $WORKDIR
