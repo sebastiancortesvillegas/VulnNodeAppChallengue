@@ -10,7 +10,7 @@ phases:
     commands:
       - echo Installing source NPM dependencies...
       - npm install
-      - docker login --username $DOCKERHUB_USERNAME --password $DOCKERHUB_PASS
+      - echo "$DOCKERHUB_PASS" | docker login --username $DOCKERHUB_USER --password-stdin
       - echo Logging in to Amazon ECR...
       - aws ecr get-login-password --region $AWS_DEFAULT_REGION | docker login --username AWS --password-stdin $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com
   build:
@@ -21,7 +21,7 @@ phases:
       - docker build -t $IMAGE_REPO_NAME:$IMAGE_TAG .
       - docker tag $IMAGE_REPO_NAME:$IMAGE_TAG $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAME:$IMAGE_TAG
       - snyk test ||true --json > result-opensource.json
-      - snyk monitor --all-projects --org=dfc53452-bd8c-4e29-90e0-a30d8055af24
+      - snyk monitor --all-projects --org=$ORG
   post_build:
     commands:
       - echo Build completed on `date`
