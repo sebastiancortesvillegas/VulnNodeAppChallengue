@@ -3,20 +3,29 @@ os: linux
 files:
   - source: /
     destination: /home/ec2-user/nodejs-aws-codedeploy-pipeline
+    overwrite: true
+permissions:
+  - object: /home/ec2-user/nodejs-aws-codedeploy-pipeline
+    pattern: "*.sh"
+    owner: root
+    group: root
+    mode: 755
+    type:
+      - file
 hooks:
-# ApplicationStop:
-# DownloadBundle:
-#  BeforeInstall:
-#    - location: scripts/before_install.sh
-#      timeout: 300
-#      runas: root
-# Install:
+  BeforeInstall:
+    - location: scripts/before_install.sh
+      timeout: 180
   AfterInstall:
     - location: scripts/after_install.sh
-      timeout: 300
-      runas: root
+      timeout: 180
   ApplicationStart:
-    - location: scripts/application_start.sh
-      timeout: 300
-      runas: root
-# ValidateService:
+    - location: codedescriptsploy/app_start.sh
+      timeout: 180
+  ApplicationStop:
+    - location: scripts/app_stop.sh
+      timeout: 180
+#  ValidateService:
+ #   - location: scripts/validate_service.sh
+  #    timeout: 180 
+      
