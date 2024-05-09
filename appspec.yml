@@ -14,16 +14,16 @@ permissions:
       - file
 hooks:
   BeforeInstall:
-    - location: scripts/before_install.sh
+    - location: before_install.sh
       timeout: 180
   AfterInstall:
-    - location: scripts/after_install.sh
+    - location: after_install.sh
       timeout: 180
   ApplicationStart:
-    - location: codedescriptsploy/app_start.sh
+    - location: app_start.sh
       timeout: 180
   ApplicationStop:
-    - location: scripts/app_stop.sh
+    - location: app_stop.sh
       timeout: 180
 #  ValidateService:
  #   - location: scripts/validate_service.sh
