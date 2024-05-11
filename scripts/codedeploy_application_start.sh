@@ -1,4 +1,5 @@
 #!/bin/bash
-# Stop all servers and start the server
-pm2 stop all
-pm2 start /home/ubuntu/my-app1/app/index.js
+cd /home/ubuntu/Nodeapp-vulnode
+pm2 delete server
+pm2 start app.js
+
