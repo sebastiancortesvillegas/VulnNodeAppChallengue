@@ -3,7 +3,7 @@ os: linux
 files:
   - source: /
     destination: /
-#hooks:
+hooks:
  # AfterInstall:
   #  - location: scripts/codedeploy_after_install.sh
    #   timeout: 300
