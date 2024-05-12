@@ -2,12 +2,12 @@ version: 0.0
 os: linux
 files:
   - source: /
-    destination: /home/ubuntu/Nodeapp-vulnode
-hooks:
-  AfterInstall:
-    - location: scripts/codedeploy_after_install.sh
-      timeout: 300
-      runas: root
+    destination: /
+#hooks:
+ # AfterInstall:
+  #  - location: scripts/codedeploy_after_install.sh
+   #   timeout: 300
+    #  runas: root
   ApplicationStart:
     - location: scripts/codedeploy_application_start.sh
       timeout: 300
